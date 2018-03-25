@@ -1,0 +1,24 @@
+
+  <div class="login-modal">
+      <div class="text-center ">
+          <h2 class="modal-heading">Register</h2>
+        </div>
+      <form name="formName" >
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text"  name="name" class="form-control" id="name" ng-model="register.name" required>
+            <span class="error-msg" ng-show="formName.name.$touched && formName.name.$invalid">Name is required</span>
+          </div>
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" ng-model="register.email" name="email" class="form-control" id="email" required>
+          <span class="error-msg" ng-show="formName.email.$touched && formName.email.$invalid">Email is required</span>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" ng-model="register.password" name="password" class="form-control" id="password" required>
+          <span class="error-msg" ng-show="formName.password.$touched && formName.password.$invalid">Password is required</span>
+        </div>
+        <button ng-click="closeModal(register)"  class="btn btn-default reg-log mb-2" ng-disabled="formName.$invalid">Log In</button>
+      </form>
+  </div>

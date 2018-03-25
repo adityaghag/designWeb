@@ -1,0 +1,94 @@
+{
+    "title": "Create Transaction",
+    "name": "Transaction",
+    "jsonPage": "viewTransaction",
+    "desciption": "",
+    "pageType": "create",
+    "urlFields": ["Transaction"],
+    "fields": [
+        {
+            "name": "User",
+            "type": "tags",
+            "tableRef": "user",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter User ",
+            "id": "user",
+            "validation": [
+            "",
+            "trim",
+            ""
+            ],
+            "url": "User/search",
+            "onView":true
+        }, 
+        {
+            "name": "Script",
+            "type": "tags",
+            "tableRef": "script",
+            "dropDownType": "single",
+            "dropDownField": "name",
+            "searchApi": "searchCall",
+            "placeholder": "Enter Name ",
+            "id": "script",
+                "validation": [
+                "",
+                "trim",
+                ""
+                ],
+                "url": "Script/search",
+                "onView":true
+                },
+    {
+        "name": "Rate",
+        "type": "number",
+        "tableRef": "rate",
+        "placeholder": "Enter Rate",
+        "id": "rate",
+        "validation": ["required", "trim", "unique"],
+        "url": ""
+    }, {
+        "name": "Quantity",
+        "type": "number",
+        "tableRef": "quantity",
+        "placeholder": "Enter Quantity",
+        "id": "quantity",
+        "validation": ["", "trim", "unique"],
+        "url": ""
+    },  {
+        "name": "OrderType",
+        "type": "tags",
+        "tableRef": "orderType",
+        "placeholder": "Enter OrderType",
+        "id": "status",
+        "validation": ["", "trim", ""],
+        "url": "",
+        "dropDownField": "",
+        "dropDownType": "single",
+        "onView": true,
+        "dropDown": ["Buy", "Sell"]
+    }],
+    "action": [{
+        "name": "submit",
+        "action": "submitTransaction",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewTransaction"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewTransaction"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Transaction/save"
+    }
+}

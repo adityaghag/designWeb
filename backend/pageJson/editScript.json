@@ -1,0 +1,53 @@
+{
+    "title": "Edit Script",
+    "name": "Script",
+    "jsonPage": "viewScript",
+    "desciption": "",
+    "pageType": "edit",
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "Name",
+        "type": "text",
+        "tableRef": "name",
+        "placeholder": "Enter Name",
+        "id": "name",
+        "validation": ["required", "trim", "unique"],
+        "url": ""
+    },{
+        "name": "Short Name",
+        "type": "text",
+        "tableRef": "shortName",
+        "placeholder": "Enter Short Name",
+        "id": "shortName",
+        "validation": ["", "trim", "unique"],
+        "url": ""
+    }],
+    "action": [{
+        "name": "submit",
+        "action": "submitScript",
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewScript"
+            }
+        }
+    }, {
+        "name": "cancel",
+        "sideMenuRedirect": true,
+        "stateName": {
+            "page": "page",
+            "json": {
+                "id": "viewScript"
+            }
+        }
+    }],
+    "apiCall": {
+        "url": "Script/save",
+        "params": "_id"
+    },
+    "preApi": {
+        "url": "Script/getOne",
+        "params": "_id"
+    }
+
+}

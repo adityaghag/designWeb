@@ -1,0 +1,61 @@
+{
+    "title": "SellOrder",
+    "description": "List of SellOrders",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [ {
+            "name": "User",
+            "isSort": "",
+            
+            "tableRef": "user.name"
+            }, 
+            {
+            "name": "Script",
+            "isSort": "",
+            
+            "tableRef": "script.name"
+            },  
+        {
+        "name": "Rate",
+        "isSort": "",
+        "tableRef": "rate"
+    }, {
+        "name": "Quantity",
+        "isSort": "",
+        "tableRef": "quantity"
+    }],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editSellOrder",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete SellOrder",
+        "content": "Are you sure you want to delete SellOrder?",
+        "api": "sellOrder/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+    "button": [{
+        "name": "Create",
+        "icon": "plus",
+        "class": "btn-success",
+        "type": "page",
+        "action": "createSellOrder"
+    }],
+    "apiCall": {
+        "url": "SellOrder/search",
+        "params": "_id"
+    }
+}

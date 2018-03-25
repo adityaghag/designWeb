@@ -1,0 +1,18 @@
+<div class="container-fluid text-center">
+    <div class="row justify-content-md-center">
+        <div class="col-md-8 col-md-offset-2 login-panel">
+            <h2 class="pad-20">Authentication</h2>
+            <div class="qr-scan-code base32">
+                <img ng-src="{{qrCodeData.qrCode}}" alt="">
+            </div>
+            <div class=" text-center">
+                <input type="text" class="form-control shadow-box" id="Code" name="Code" placeholder="Code" readonly ng-model="qrCodeData.base32">
+            </div>
+            <div class="text-center ">
+                <input type="text" class="form-control shadow-box" id="Enter No" name="Enter No" placeholder="Enter Token" ng-model="qrCodeData.token">
+                <button class="btn btn-light text-center btn-login w-100 shadow-box mt-3 label-color rounded mar20 btn-val-sub" ng-click="enterToken()">Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

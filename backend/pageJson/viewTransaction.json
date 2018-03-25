@@ -1,0 +1,75 @@
+{
+    "title": "Transaction",
+    "description": "List of Transaction",
+    "pageType": "view",
+    "sendIdWithCreate": true,
+    "urlFields": ["_id"],
+    "fields": [{
+        "name": "User",
+        "isSort": "",
+        
+        "tableRef": "user.name"
+        }, 
+        {
+        "name": "Script",
+        "isSort": "",
+        
+        "tableRef": "script.name"
+        },  
+    {
+    "name": "Rate",
+    "isSort": "",
+    "tableRef": "rate"
+}, {
+    "name": "Quantity",
+    "isSort": "",
+    "tableRef": "quantity"
+}],
+    "action": [{
+        "name": "edit",
+        "icon": "fa-pencil",
+        "buttonClass": "btn-primary",
+        "type": "page",
+        "action": "editTransaction",
+        "fieldsToSend": {
+            "_id": "_id"
+        }
+    }, {
+        "name": "delete",
+        "icon": "fa-trash",
+        "buttonClass": "btn-danger",
+        "type": "apiCallConfirm",
+        "title": "Delete Transaction",
+        "content": "Are you sure you want to delete Transaction?",
+        "api": "transaction/delete",
+        "fieldsToSend": {
+            "name": "_id",
+            "value": "_id"
+        }
+    }],
+    "button": [{
+        "name": "Excel Export",
+        "icon": "print",
+        "class": "btn-danger",
+        "type": "redirect",
+        "action": "Transaction/generateExcel",
+        "linkType": "admin"
+    }, {
+        "name": "Upload Excel",
+        "icon": "delete",
+        "class": "btn-warning",
+        "type": "redirect",
+        "action": "excel-upload/Transaction",
+        "linkType": "internal"
+    }, {
+        "name": "Create",
+        "icon": "plus",
+        "class": "btn-success",
+        "type": "page",
+        "action": "createTransaction"
+    }],
+    "apiCall": {
+        "url": "Transaction/search",
+        "params": "_id"
+    }
+}

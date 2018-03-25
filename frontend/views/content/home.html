@@ -1,0 +1,388 @@
+<div class="container-fluid">
+  <div class="mx-4 mb-4">
+    <div class="row m-3">
+      <div class="col">
+        <div class="float-right">
+            <form name="formData" class="form-inline " >
+              <label class="user-pass" for="username">Username:</label>
+              <input type="text" class="form-control login-placeholder" ng-model="data1.name"  id="username" placeholder="Enter username" name="username">
+              <label class="user-pass" for="password">Password:</label>
+              <input type="password" class="form-control login-placeholder" ng-model="data1.password" name="password" id="password" placeholder="Enter password">
+              <button class="button button-block button-positive mx-4" ng-click="submitForm(data1)" class="btn btn-default" ng-disabled="formData.$invalid"
+              promise-btn>Log In</button>
+              <button class="button button-block button-positive" ng-click="openModal()">Register</button>
+            </form> 
+        </div>
+        
+      </div>
+       
+    </div>
+      
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <div class="table-responsive">
+          <table class="table-amount border">
+            <thead class="thead-light">
+              <tr>
+                <th>
+                  <i class="fa fa-barcode-alt"></i>
+                </th>
+                <th>
+                  <h6>List of BuyOrders</h6>
+                </th>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <th>Rate</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="data in lists">
+                <td class="pl-3 text-danger font-weight-bold">{{data.rate}}</td>
+                <td class="pl-4 font-weight-bold">{{data.quantity}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+        <div class="table-responsive">
+          <table class="table-amount green-hover border">
+            <thead class="thead-light">
+              <tr>
+                <th>
+                  <i class="fa fa-barcode-alt"></i>
+                </th>
+                <th>
+                  <h6>List of SellOrders</h6>
+                </th>
+              </tr>
+            </thead>
+
+            <thead>
+              <tr>
+                <th>Rate</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="data in lists1">
+                <td class="pl-3 text-success font-weight-bold">{{data.rate}}</td>
+                <td class="pl-4 font-weight-bold">{{data.quantity}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="exchange-tabs">
+          <uib-tabset active="activeJustified" justified="true">
+            <uib-tab index="0" heading="Limit">
+              <div class="row">
+                <div class="col col-lg-6">
+                  <form class="form-horizontal">
+                    <div class="px-3">
+                      <div class="bor-right">
+                        <div class="row">
+                          <div class="col form-group form-group-sm">
+                            <div class="row">
+                              <label for="first_name" class="col-6 col-form-label font-weight-bold">
+                                Buy BTC
+                              </label>
+                              <div class="col-6 text-right">
+                                <label for="first_name" class="col-form-label label-color">USDT Balance:--</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 form-group form-group-sm mb-2">
+                            <div class="row">
+                              <label for="first_name" class="col-3 col-form-label label-color">Price:</label>
+                              <div class="col-9 place-right">
+                                <input type="number" ng-model="buyData.rate" class="form-control shadow-box" id="first_name" name="first_name" placeholder="Rate">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 form-group form-group-sm  mb-2">
+                            <div class="row">
+                              <label for="last_name" class="col-3 col-form-label label-color">Quantity:</label>
+                              <div class="col-9  place-right">
+                                <input type="number" ng-model="buyData.quantity" class="form-control shadow-box" id="last_name" name="last_name" placeholder="Quantity">
+                                <div class="text-center">
+                                  <button type="button" class="btn btn-light btn-percent shadow-box label-color">25%</button>
+                                  <button type="button" class="btn btn-light btn-percent shadow-box label-color">50%</button>
+                                  <button type="button" class="btn btn-light btn-percent shadow-box label-color">75%</button>
+                                  <button type="button" class="btn btn-light btn-percent shadow-box label-color">100%</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 form-group form-group-sm">
+                            <div class="row">
+                              <label for="Street" class="col-3 col-form-label label-color">Total:</label>
+                              <div class="col-9  place-right">
+                                <input type="number" ng-model="Total" ng-init="Total=(buyData.rate)*(buyData.quantity)" value="{{buyData.quantity*buyData.rate}}"
+                                  class="form-control shadow-box" id="Street" name="Street" placeholder="Total">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col form-group form-group-sm">
+                            <div class="row">
+                              <div class="col text-center" ng-if=userData==null||userData.value==false>
+                                <button type="submit" class="btn btn-light text-center btn-login w-100 shadow-box mt-3 label-color rounded">
+                                  <span class="">Login</span> or
+                                  <span>Register</span> to trade</button>
+                              </div>
+                              <div class="col text-center" ng-if=userData.value==true>
+                                <button type="" class="btn btn-light text-center btn-login w-100 shadow-box mt-3 label-color rounded" ng-click="addBuyOrder(buyData)">
+                                  <span class="">Submit</span>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="col col-lg-6">
+                  <form class="form-horizontal">
+                    <div class="px-3">
+                      <div class="row">
+                        <div class="col form-group form-group-sm bor-top">
+                          <div class="row">
+                            <label for="first_name" class="col-6 col-form-label font-weight-bold">
+                              Sell BTC
+                            </label>
+                            <div class="col-6 text-right">
+                              <label for="first_name" class="col-form-label label-color">USDT Balance:--</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 form-group form-group-sm  mb-2">
+                          <div class="row">
+                            <label for="first_name" class="col-3 col-form-label label-color">Price:</label>
+                            <div class="col-9 place-right">
+                              <input type="number" ng-model="sellData.rate" class="form-control shadow-box" id="first_name" name="first_name" placeholder="Rate">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 form-group form-group-sm  mb-2">
+                          <div class="row">
+                            <label for="last_name" class="col-3 col-form-label label-color">Quantity:</label>
+                            <div class="col-9  place-right">
+                              <input type="number" ng-model="sellData.quantity" class="form-control shadow-box" id="last_name" name="last_name" placeholder="Quantity">
+                              <div class="text-center">
+                                <button type="button" class="btn btn-light btn-percent shadow-box label-color">25%</button>
+                                <button type="button" class="btn btn-light btn-percent shadow-box label-color">50%</button>
+                                <button type="button" class="btn btn-light btn-percent shadow-box label-color">75%</button>
+                                <button type="button" class="btn btn-light btn-percent shadow-box label-color">100%</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 form-group form-group-sm">
+                          <div class="row">
+                            <label for="Street" class="col-3 col-form-label label-color">Total:</label>
+                            <div class="col-9  place-right">
+                              <input type="number" ng-model="Total1" ng-init="Total=(sellData.rate)*(sellData.quantity)" value="{{sellData.quantity*sellData.rate}}"
+                                class="form-control shadow-box" id="Street" name="Street" placeholder="Total">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 form-group form-group-sm">
+                          <div class="row">
+                            <div class="col" ng-if=userData==null||userData.value==false>
+                              <button type="submit" class="btn btn-light text-center w-100 btn-login shadow-box mt-3 label-color rounded">
+                                <span>Login</span> or
+                                <span>Register</span> to trade</button>
+                            </div>
+                            <div class="col" ng-if=userData.value==true>
+                              <button type="" class="btn btn-light text-center w-100 btn-login shadow-box mt-3 label-color rounded" ng-click="addSellOrder(sellData)">
+                                <span>Submit</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </uib-tab>
+            <uib-tab index="1" heading="Market">Market</uib-tab>
+            <uib-tab index="2" heading="Stop-Limit">Stop-Limit </uib-tab>
+          </uib-tabset>
+        </div>
+      </div>
+      <div class="col-12 col-md-3">
+        <!-- <div ng-if=userData==null||userData.value==false>
+          <form name="formData">Username:
+            <input type="text" ng-model="data1.name" name="username"> Password:
+            <input type="password" ng-model="data1.password" name="password">
+            <button class="button button-block button-positive" ng-click="submitForm(data1)" class="btn btn-default" ng-disabled="formData.$invalid"
+              promise-btn>Log In</button>
+          </form>
+        </div> -->
+        <div ng-if=userData.value==true>
+          <p>Welcome {{userData.data.name}}</p>
+          <button class="button button-block button-positive" ng-click="logOut()" class="btn btn-default" ng-disabled="formData.$invalid"
+            promise-btn>Log Out</button>
+        </div>
+        <div ng-if="userData.value==false">
+          <p>{{userData.error.message}}</p>
+        </div>
+        <div class="table-responsive">
+          <table class="table-amount border">
+            <thead class="thead-light">
+              <tr>
+                <th>
+                  <i class="fa fa-barcode-alt"></i>
+                </th>
+                <th>
+                  <h6>Transactions</h6>
+                </th>
+              </tr>
+            </thead>
+
+            <thead>
+              <tr>
+                <th>Rate</th>
+                <th>Quantity</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="data in allTransactionData">
+                <td class="pl-3 text-danger font-weight-bold">{{data.rate}}</td>
+                <td class="pl-4 font-weight-bold">{{data.quantity}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <div class="mt-4 table-order">
+          <div class="float-left">
+            <h6 class="font-weight-bold">
+              Open Orders
+            </h6>
+          </div>
+          <div class="float-right hide-pair">
+            <input type="checkbox" class="align-middle">
+            <span>Hide other pairs</span>
+          </div>
+          <div class="table-responsive border">
+            <table class="table table-order">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Pair</th>
+                  <th>Type</th>
+                  <th>Side</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Filled%</th>
+                  <th class="text-right">Total</th>
+                  <th class="text-right">Trigger conditions</th>
+                  <th class="text-right pr-4">
+                    <button type="button" class="btn btn-cancle">cancle All</button>
+                    <select class="select-option  align-middle">
+                      <option></option>
+                    </select>
+                  </th>
+                  <!-- <th></th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="data in userOrder.buyData" ng-if="userOrder.buyData!=null">
+                  <td>{{data.createdAt | date}}</td>
+                  <td>--</td>
+                  <td>Buy</td>
+                  <td>--</td>
+                  <td>{{data.rate}}</td>
+                  <td>{{data.quantity-data.filled}}</td>
+                  <td>{{data.filled}}</td>
+                  <td class="text-right">{{data.rate*data.quantity}}</td>
+                  <td class="text-right">--</td>
+                  <td class="text-right pr-4">--</td>
+                </tr>
+                <tr ng-repeat="data in  userOrder.sellData" ng-if="userOrder.sellData!=null">
+                  <td>{{data.createdAt |date}}</td>
+                  <td>--</td>
+                  <td>Sell</td>
+                  <td>--</td>
+                  <td>{{data.rate}}</td>
+                  <td>{{data.quantity-data.filled}}</td>
+                  <td>{{data.filled}}</td>
+                  <td class="text-right">{{data.rate*data.quantity}}</td>
+                  <td class="text-right">--</td>
+                  <td class="text-right pr-4">--</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-12">
+        <div class="mt-4 table-order">
+          <div class="float-left">
+            <h6 class="font-weight-bold">
+              Trade History
+            </h6>
+          </div>
+          <div class="float-right hide-pair">
+            <input type="checkbox" class="align-middle">
+            <span>Hide other pairs</span>
+            <span class="pl-3 font-weight-bold">
+              <a>More</a>
+            </span>
+          </div>
+          <div class="table-responsive border">
+            <table class="table table-order">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Pair</th>
+                  <th>Type</th>
+                  <th>Side</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Filled%</th>
+                  <th class="text-right">Total</th>
+                  <th class="text-right">Trigger conditions</th>
+                  <th class="text-right pr-4">
+                    <button type="button" class="btn btn-cancle">cancle All</button>
+                    <select class="select-option align-middle">
+                      <option></option>
+                    </select>
+                  </th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="data in userTransaction" ng-if="userTransaction!=null">
+                  <td>{{data.createdAt | date}}</td>
+                  <td>--</td>
+                  <td>{{data.orderType}}</td>
+                  <td>--</td>
+                  <td>{{data.rate}}</td>
+                  <td>{{data.quantity}}</td>
+                  <td>--</td>
+                  <td class="text-right">{{data.rate*data.quantity}}</td>
+                  <td class="text-right">--</td>
+                  <td class="text-right pr-4">--</td>
+                  <td>--</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
